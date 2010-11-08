@@ -1,4 +1,4 @@
-﻿local AppName = "Broker_Compass"
+local AppName = "Broker_Compass"
 local DisplayName = "Broker: Compass"
 local LDB = LibStub:GetLibrary("LibDataBroker-1.1")
 local L = LibStub("AceLocale-3.0"):GetLocale(AppName)
@@ -19,7 +19,6 @@ end
 Broker_CompassDB = Broker_CompassDB or {
 }
 local db
-local updateDelay
 
 local directions = {
     L["NorthEast"],
@@ -96,26 +95,22 @@ update = function(forced)
     bc.iconCoords = texcoords[deg]
 end
 
-local lastUpdate = 0
-local function onUpdate(frame, elapsed)
-    lastUpdate = lastUpdate + elapsed
-    if (lastUpdate < updateDelay) then
-        return
-    end
-    lastUpdate = 0
-    update()
-end
-
 local bcTimerFrame = CreateFrame("Frame")
 bcTimerFrame:SetScript("OnEvent", function(frame, event, arg)
     if event == 'ADDON_LOADED' and arg == AppName then
         db = Broker_CompassDB
-        updateDelay = db.updateDelay or UpdateDelay
         update(true)
+        local bcTimerAnim = frame:CreateAnimationGroup()
+        local anim = bcTimerAnim:CreateAnimation()
+        anim:SetDuration(db.updateDelay and db.updateDelay > 0 and db.updateDelay or UpdateDelay)
+        bcTimerAnim:SetScript("OnFinished", function(self)
+            update()
+            self:Play()
+        end)
+        bcTimerAnim:Play()
+
         frame:UnregisterEvent('ADDON_LOADED')
-        frame:SetScript("OnUpdate", onUpdate)
         frame:SetScript("OnEvent", nil)
     end
 end)
 bcTimerFrame:RegisterEvent('ADDON_LOADED')
-
