@@ -77,6 +77,8 @@ bc = {
         suffix = "°",
         OnTooltipShow = function(tt)
             tt:AddLine(DisplayName)
+            tt:AddLine(L["|cffeda55fLeft Click|r to change text format"])
+            tt:AddLine(L["|cffeda55fAlt + Left Click|r to change icon"])
         end,
         OnClick = function(frame, button)
             if button == "LeftButton" then
