@@ -19,3 +19,6 @@ L["South-long"] = "South"
 L["SouthWest-long"] = "Southwest"
 L["West-long"] = "West"
 L["NorthWest-long"] = "Northwest"
+
+L["|cffeda55fLeft Click|r to change text format"] = "|cffeda55fLeft Click|r to change text format"
+L["|cffeda55fAlt + Left Click|r to change icon"] = "|cffeda55fAlt + Left Click|r to change icon"
