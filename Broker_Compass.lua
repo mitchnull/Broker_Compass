@@ -124,7 +124,8 @@ bc = {
 LDB:NewDataObject(AppName, bc)
 
 update = function(forced)
-    local deg = 360 - round((GetPlayerFacing() * 180) / Pi)
+    local pf = GetPlayerFacing() or 0
+    local deg = 360 - round((pf * 180) / Pi)
     if deg == 360 then
         deg = 0
     end
