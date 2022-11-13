@@ -88,38 +88,38 @@ local texcoords = setmetatable({}, {
 
 local update, bc -- forward decl
 bc = {
-    type = "data source",
-    label = L["Direction"],
-    icon = Icon,
-    staticIcon = Icon,
-    iconCoords = texcoords[0],
-    text = "",
-    value = "",
-    suffix = "°",
-    OnTooltipShow = function(tt)
-      tt:AddLine(DisplayName)
-      tt:AddLine(L["|cffeda55fLeft Click|r to change text format"])
-      tt:AddLine(L["|cffeda55fAlt + Left Click|r to change icon"])
-    end,
-    OnClick = function(frame, button)
-      if button == "LeftButton" then
-        if IsAltKeyDown() then
-          db.iconIdx = db.iconIdx + 1
-          if db.iconIdx > #Icons then
-            db.iconIdx = 1
-          end
-          bc.icon = Icons[db.iconIdx]
-          update(true)
-        else
-          db.textIdx = db.textIdx + 1
-          if db.textIdx > #Texts then
-            db.textIdx = 1
-          end
-          texts = Texts[db.textIdx]
-          update(true)
+  type = "data source",
+  label = L["Direction"],
+  icon = Icon,
+  staticIcon = Icon,
+  iconCoords = texcoords[0],
+  text = "",
+  value = "",
+  suffix = "°",
+  OnTooltipShow = function(tt)
+    tt:AddLine(DisplayName)
+    tt:AddLine(L["|cffeda55fLeft Click|r to change text format"])
+    tt:AddLine(L["|cffeda55fAlt + Left Click|r to change icon"])
+  end,
+  OnClick = function(frame, button)
+    if button == "LeftButton" then
+      if IsAltKeyDown() then
+        db.iconIdx = db.iconIdx + 1
+        if db.iconIdx > #Icons then
+          db.iconIdx = 1
         end
+        bc.icon = Icons[db.iconIdx]
+        update(true)
+      else
+        db.textIdx = db.textIdx + 1
+        if db.textIdx > #Texts then
+          db.textIdx = 1
+        end
+        texts = Texts[db.textIdx]
+        update(true)
       end
-    end,
+    end
+  end,
 }
 LDB:NewDataObject(AppName, bc)
 
