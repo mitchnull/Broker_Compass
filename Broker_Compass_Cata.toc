@@ -1,4 +1,4 @@
-## Interface: 100206
+## Interface: 40400
 ## Title: Broker: Compass
 ## Author: mitch0
 ## Version: @project-version@
@@ -8,8 +8,7 @@
 ## SavedVariables: Broker_CompassDB
 ## OptionalDeps: LibStub, CallbackHandler-1.0
 ## X-License: Public Domain
-## X-RelSite-WoWI: 27492
-## ## X-WoWI-ID: 27492
+## X-RelSite-WoWI:
 
 #@no-lib-strip@
 libs\LibStub-1.0\LibStub.lua
